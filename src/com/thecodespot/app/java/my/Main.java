@@ -11,11 +11,11 @@ public class Main {
     private static final int SIZE_OF_RANDOM_INTS = 100000;
 
     public static void main(String[] args) {
-        final int[] intSet1 = new Random().ints(SIZE_OF_RANDOM_INTS, 1, 100000).toArray();
-        final int[] intSet2 = new Random().ints(SIZE_OF_RANDOM_INTS, 1, 100000).toArray();
+        final Integer[] intSet1 = (new Random().ints(SIZE_OF_RANDOM_INTS, 1, 100000)).boxed().toArray(Integer[]::new);
+        final Integer[] intSet2 = (new Random().ints(SIZE_OF_RANDOM_INTS, 1, 100000)).boxed().toArray(Integer[]::new);
 
-        final LinearSearch linearSearch = new LinearSearch(intSet1);
-        final BinarySearch binarySearch = new BinarySearch(intSet2);
+        final LinearSearch<Integer> linearSearch = new LinearSearch<>(intSet1);
+        final BinarySearch<Integer> binarySearch = new BinarySearch<>(intSet2);
 
         double runningAvg;
         runningAvg = timeSearches(linearSearch);
@@ -29,7 +29,7 @@ public class Main {
         return (int)(Math.random() * 1000) + 1;
     }
 
-    private static double timeSearches(final Search searchObj) {
+    private static double timeSearches(final Search<Integer> searchObj) {
         double runningAverage = 1;
         for (int i = 1; i < TIMES_TO_RUN + 1; i++) {
             long startTime = System.nanoTime();

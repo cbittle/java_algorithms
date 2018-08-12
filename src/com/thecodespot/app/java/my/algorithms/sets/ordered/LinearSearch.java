@@ -1,14 +1,14 @@
 package com.thecodespot.app.java.my.algorithms.sets.ordered;
 
-public class LinearSearch extends Search {
-    public LinearSearch(int[] numbers) {
-        super(numbers);
+public class LinearSearch<T extends Comparable<T>> extends Search<T> {
+    public LinearSearch(T[] _data) {
+        super(_data);
     }
 
     @Override
-    public boolean contains(final int num) {
-        for (int integer : integers) {
-            if (integer == num) {
+    public boolean contains(final Comparable<T> target) {
+        for (T datum : data) {
+            if (target.compareTo(datum) == 0) {
                 return true;
             }
         }
